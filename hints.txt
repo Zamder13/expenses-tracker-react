@@ -1,0 +1,1 @@
+Math.abs() = The Math.abs() static method returns the ABSOLUTE value of a number.
