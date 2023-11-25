@@ -20,5 +20,6 @@
       "icon": "terminal-powershell"
     }
   },
-  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "cSpell.words": ["expensetracker"]
 }
