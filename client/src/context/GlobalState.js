@@ -20,6 +20,7 @@ export const GlobalProvider = ({ children }) => {
   const getTransactions = async () => {
     try {
       const res = await axios.get("/api/v1/transactions");
+
       dispatch({
         type: "GET_TRANSACTIONS",
         payload: res.data.data,
@@ -32,18 +33,40 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
-  const deleteTransaciton = (id) => {
-    dispatch({
-      type: "DELETE_TRANSACTION",
-      payload: id,
-    });
+  const deleteTransaction = async (id) => {
+    try {
+      await axios.delete(`/api/v1/transactions/${id}`);
+      dispatch({
+        type: "DELETE_TRANSACTION",
+        payload: id,
+      });
+    } catch (err) {
+      dispatch({
+        type: "TRANSACTIONS_ERROR",
+        payload: err.response.data.error,
+      });
+    }
   };
 
-  const addTransaciton = (transaction) => {
-    dispatch({
-      type: "ADD_TRANSACTION",
-      payload: transaction,
-    });
+  const addTransaction = async (transaction) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+
+    try {
+      const res = await axios.post("/api/v1/transactions", transaction, config);
+      dispatch({
+        type: "ADD_TRANSACTION",
+        payload: res.data.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: "TRANSACTIONS_ERROR",
+        payload: err.response.data.error,
+      });
+    }
   };
 
   return (
@@ -52,8 +75,8 @@ export const GlobalProvider = ({ children }) => {
         transactions: state.transactions,
         error: state.error,
         loading: state.loading,
-        deleteTransaciton,
-        addTransaciton,
+        deleteTransaction,
+        addTransaction,
         getTransactions,
       }}
     >

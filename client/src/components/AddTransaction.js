@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
 
 export const AddTransaction = () => {
-  const { addTransaciton } = useContext(GlobalContext);
+  const { addTransaction } = useContext(GlobalContext);
 
   const [text, setText] = useState("");
   const [amount, setAmount] = useState("");
@@ -16,7 +16,7 @@ export const AddTransaction = () => {
       amount: +amount,
     };
 
-    addTransaciton(newTransaction);
+    addTransaction(newTransaction);
     setAmount("");
     setText("");
   };

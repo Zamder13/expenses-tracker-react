@@ -3,14 +3,14 @@ export default (state, action) => {
     case "GET_TRANSACTIONS":
       return {
         ...state,
-        loaging: false,
+        loading: false,
         transactions: action.payload,
       };
     case "DELETE_TRANSACTION":
       return {
         ...state,
         transactions: state.transactions.filter(
-          (transaction) => transaction.id !== action.payload
+          (transaction) => transaction._id !== action.payload
         ),
       };
 
